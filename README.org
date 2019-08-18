@@ -1,0 +1,19 @@
+#+title:   clj-lp
+#+startup: showall
+#+OPTIONS: toc:nil author:nil timestamp:nil
+
+* Overview
+The [[https://github.com/davidneu/clj-lp][clj-lp]] library provides a Clojure wrapper around the [[http://commons.apache.org/proper/commons-math/userguide/optimization.html][Apache
+Commons Math]] implementation of the simplex method.  It also provides a
+linear programming based classifier which is demonstrated on the
+Wisconsin breast cancer dataset. 
+
+* Credits
+Motivated by [[https://github.com/levand][@levand]]'s [[https://github.com/levand/prolin][prolin]].
+
+* License
+
+Copyright © 2019 David J. Neu
+
+Released under the MIT license.
+

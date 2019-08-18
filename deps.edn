@@ -1,0 +1,42 @@
+{:paths
+ ["src" "dev" "test"]
+
+ :mvn/local-repo "./m2"
+ 
+ :deps
+ {org.clojure/clojure {:mvn/version "1.10.1"}
+  org.clojure/tools.namespace {:mvn/version "0.2.11"}
+  clj-mvt {:mvn/version "1.0.0-alpha"}
+  clj-du {:local/root "/home/djneu/projects/clj-du"}
+  org.apache.commons/commons-math3 {:mvn/version "3.6.1"}}
+ 
+ :aliases
+ {:socket {:jvm-opts ["-Xms12g"
+                      "-Xmx12g"
+                      "-server"
+                      "-Dclojure.server.repl={:port,5555,:accept,clj-mvt.repl/socket-repl}"]}
+  
+  ;; See https://github.com/cognitect-labs/test-runner
+  :test {:extra-paths ["test"]
+         :extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                 :sha "cb96e80f6f3d3b307c59cbeb49bb0dcb3a2a780b"}}
+         :main-opts ["-m" "cognitect.test-runner"]}
+
+  :pom {:main-opts ["-m" "clj-mvt.tools" "--pom" "1.0.0-alpha"]}
+  
+  ;; See https://github.com/seancorfield/dot-clojure/blob/master/deps.edn
+  :uberjar {:extra-deps {seancorfield/depstar {:mvn/version "RELEASE"}}
+            :main-opts ["-m" "hf.depstar.uberjar" "clj-lp-1.0.0-alpha-standalone.jar"]}
+
+  ;; See https://github.com/seancorfield/dot-clojure/blob/master/deps.edn  
+  :jar {:extra-deps {seancorfield/depstar {:mvn/version "RELEASE"}}
+        :main-opts ["-m" "hf.depstar.jar" "clj-lp-1.0.0-alpha.jar"]}
+
+  ;; See https://github.com/slipset/deps-deploy  
+  :install {:extra-deps {deps-deploy {:mvn/version "RELEASE"}}
+            :main-opts ["-m" "deps-deploy.deps-deploy" "install" "clj-lp-1.0.0-alpha.jar"]}
+
+  ;; See https://github.com/slipset/deps-deploy
+  :deploy {:extra-deps {deps-deploy {:mvn/version "RELEASE"}}
+           :main-opts ["-m" "deps-deploy.deps-deploy" "deploy" "clj-lp-1.0.0-alpha.jar"]}}}
+
